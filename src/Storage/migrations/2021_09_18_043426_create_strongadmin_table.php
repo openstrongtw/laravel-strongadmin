@@ -53,9 +53,9 @@ class CreateStrongadminTable extends Migration
     public function up()
     {
         $this->schema->create('strongadmin_user', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_unicode_ci';
+            // $table->engine = 'InnoDB';
+            // $table->charset = 'utf8';
+            // $table->collation = 'utf8_unicode_ci';
 
             $table->bigIncrements('id')->comment('管理員id');
             $table->string('user_name', 50)->default('')->comment('登錄名')->unique();
@@ -67,36 +67,40 @@ class CreateStrongadminTable extends Migration
             $table->string('avatar', 255)->default('')->comment('頭像');
             $table->string('introduction', 255)->default('')->comment('介紹');
             $table->unsignedInteger('status')->default(1)->comment('狀態 1 啟用, 2 禁用');
+            $table->boolean("is_protected")->default(false)->comment('帳號保護狀態 0 否 1 是');
+            $table->boolean("is_hidden_list")->default(false)->comment('隱藏清單狀態 0 否 1 是');
             $table->string('last_ip', 255)->default('')->comment('最近一次登錄ip');
             $table->dateTime('last_at')->nullable()->comment('最近一次登錄時間');
             $table->timestamps();
         });
 
         $this->schema->create('strongadmin_role', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_unicode_ci';
+            // $table->engine = 'InnoDB';
+            // $table->charset = 'utf8';
+            // $table->collation = 'utf8_unicode_ci';
 
             $table->bigIncrements('id')->comment('角色id');
             $table->string('name', 50)->default('')->comment('名稱')->unique();
             $table->string('desc', 255)->default('')->comment('角色描述');
+            $table->boolean("is_protected")->default(false)->comment('保護狀態 0 否 1 是');
+            $table->boolean("is_hidden_list")->default(false)->comment('隱藏清單狀態 0 否 1 是');
             $table->text('permissions')->nullable()->comment('擁有的許可權');
             $table->timestamps();
         });
 
         $this->schema->create('strongadmin_user_role', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_unicode_ci';
+            // $table->engine = 'InnoDB';
+            // $table->charset = 'utf8';
+            // $table->collation = 'utf8_unicode_ci';
 
             $table->integer('admin_user_id');
             $table->integer('admin_role_id');
         });
 
         $this->schema->create('strongadmin_menu', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_unicode_ci';
+            // $table->engine = 'InnoDB';
+            // $table->charset = 'utf8';
+            // $table->collation = 'utf8_unicode_ci';
 
             $table->bigIncrements('id')->comment('菜單id');
             $table->unsignedInteger('level')->default(1)->comment('等級 1 一級菜單, 2 二級菜單, 3 三級菜單');
@@ -105,14 +109,15 @@ class CreateStrongadminTable extends Migration
             $table->string('route_url', 100)->nullable()->comment('菜單跳轉地址');
             $table->unsignedInteger('status')->default(1)->comment('狀態 1開啟,2禁用');
             $table->integer('sort')->default(100)->comment('排序');
+            $table->boolean("is_hidden_list")->default(false)->comment('隱藏清單狀態 0 否 1 是');
             $table->timestamps();
             $table->integer('delete_allow')->default(1)->comment('是否允許刪除：1 允許，2 不允許');
         });
 
         $this->schema->create('strongadmin_log', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_unicode_ci';
+            // $table->engine = 'InnoDB';
+            // $table->charset = 'utf8';
+            // $table->collation = 'utf8_unicode_ci';
 
             $table->bigIncrements('id');
             $table->string('route_url', 100)->default('')->comment('路由');
@@ -135,6 +140,8 @@ class CreateStrongadminTable extends Migration
                 'user_name' => $user_name,
                 'password' => $password,
                 'status' => 1,
+                'is_protected' => 1,
+                'is_hidden_list' => 1
             ],
             [
                 'id' => 2,
@@ -149,6 +156,8 @@ class CreateStrongadminTable extends Migration
                 'id' => 1,
                 'name' => '管理員',
                 'desc' => '超級管理員，不可刪除',
+                'is_protected' => 1,
+                'is_hidden_list' => 1
             ],
             [
                 'id' => 2,
