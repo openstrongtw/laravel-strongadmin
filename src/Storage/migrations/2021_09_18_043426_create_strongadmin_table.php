@@ -148,6 +148,8 @@ class CreateStrongadminTable extends Migration
                 'user_name' => 'demo',
                 'password' => $password,
                 'status' => 1,
+                'is_protected' => 0,
+                'is_hidden_list' => 0
             ],
         ]);
         //strongadmin_role
@@ -163,6 +165,8 @@ class CreateStrongadminTable extends Migration
                 'id' => 2,
                 'name' => 'demo',
                 'desc' => '僅作為演示',
+                'is_protected' => 0,
+                'is_hidden_list' => 0
             ],
         ]);
         //strongadmin_user_role
