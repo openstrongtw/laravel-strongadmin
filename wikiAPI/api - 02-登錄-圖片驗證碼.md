@@ -1,0 +1,49 @@
+#### 介面版本：
+
+|版本號|制定人|修訂日期|說明|
+|:----|:----|:----   |:----|
+|1.0 |Karen  |2021-10-22 |建立文件|
+
+#### 請求URL:
+
+- {{HOST}}/captcha/api/default
+
+#### 請求方式：
+
+- GET
+
+#### 請求頭：
+
+|參數名|是否必須|型別|說明|
+|:----    |:---|:----- |-----   |
+
+#### 請求參數:
+
+|參數名|是否必須|型別|說明|
+|:----    |:---|:----- |-----   |
+
+#### 返回示例:
+
+**正確時返回:**
+
+```
+{
+    "sensitive": false,
+    // captcha_key 登錄時使用
+    "key": "$2y$10$uiW8b9Aqit7ESDYxSbX10OJAOR3JCRMtSCaCpZqsIAGm7UmzJFbuu",
+    // base64 圖片驗證碼
+    "img": "data:image/png;base64,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"
+}
+```
+
+#### 返回CODE說明:
+
+|參數名|說明|
+|:----- |----- |
+|200 |成功  |
+|3001 |欄位驗證錯誤  |
+|5001|服務內部錯誤|
+
+#### 備註:
+
+- 更多返回錯誤程式碼請看首頁的錯誤程式碼描述

@@ -1,0 +1,39 @@
+{
+    "name": "openstrongtw/laravel-strongadmin",
+    "description": "在1分鐘內構建一個功能齊全的管理後臺。基於 layui 前端框架開發的 Laravel 後臺管理框架。功能有 許可權管理、菜單管理、角色管理、日誌記錄等。",
+    "type": "laravel-extension",
+    "homepage": "http://strongstub.strongshop.cn",
+    "keywords": ["laravel", "PHP", "layui", "後臺管理"],
+    "license": "MIT", 
+    "authors": [
+        {
+            "name": "Karen",
+            "email": "openstrong@foxmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "laravel/framework": ">=5.5",
+        "mews/captcha": "^3.2",
+        "openstrongtw/laravel-strongstub": ">=1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenStrong\\StrongAdmin\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OpenStrong\\StrongAdmin\\StrongAdminServiceProvider"
+            ]
+        }
+    },
+    "replace": {
+        "openstrong/laravel-strongadmin":"2.*"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true
+}
